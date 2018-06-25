@@ -48,7 +48,9 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: questionnaire_production
+  adapter: postgresql
+  encoding: utf8
+  database: postgresql
+  port: 5432
   username: giftco.info@gmail.com
-  password: <%= ENV['re-JAPAN0520'] %>
+  password: re-JAPAN0520
