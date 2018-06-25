@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h3>ようこそ<%= current_manager.email %>さん</h3>
+
+
+<table>
+  <tbody>
+  <tr>
+    <th>社員名</th>
+  </tr>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <% if PamsAnswer.exists?(user_id: user.id) %>
+          <td><%= link_to '相性診断', relations_manager_path(id: current_manager.id, user_id: user.id) %></td>
+        <% else %>
+          <td>※未回答※</td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to '社員登録', new_user_registration_path(manager_id: current_manager.id) %>
+<%= link_to '回答を確認する', manager_path(id: current_manager.id) %>

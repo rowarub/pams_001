@@ -1,0 +1,93 @@
+<%= stylesheet_link_tag "pams/radio_button", :media => "all" %>
+
+<center>
+<%= form_with(model: pams_answer, local: true) do |form| %>
+  <% if pams_answer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(pams_answer.errors.count, "error") %> prohibited this pams_answer from being saved:</h2>
+
+      <ul>
+      <% pams_answer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <h2>あなたの日頃の考えについてお聞きします。</h2>
+
+  <h3>
+    Q1〜Q100:以下の質問項目について、あなたの考えに当てはまるものを選んでください。
+  </h3>
+
+  <% @questions_1_100.each do |q_key, q_value| %>
+
+    <div class="field">
+      <%= q_value %>
+      <div><br></div>
+      <% @answers_1_100.each do |a_key, a_value| %>
+        <%= form.radio_button q_key, a_key, required: true %><%= a_value %>
+      <% end %>
+    </div>
+    <h6><br></h6>
+  <% end %><br/>
+
+    <h3>
+      Q101〜Q130: 以下の質問についてあてはまる評価を選んでください。(10:とてもあてはまる  １:全くあてはまらない)
+    </h3>
+
+  <% @questions_101_130.each do |q_key, q_value| %>
+
+    <div class="field">
+      <%= q_value %>
+      <div><br></div>
+      <% @answers_101_140.each do |a_key, a_value| %>
+        <%= form.radio_button q_key, a_key, required: true %> <%= a_value %>
+      <% end %>
+    </div>
+    <h6><br></h6>
+  <% end %><br/>
+
+  <h3>
+    Q131〜Q140: 以下の10項目についてあてはまる評価を選んでください。(10点満点)
+  </h3>
+
+  <% @questions_131_140.each do |q_key, q_value| %>
+
+    <div class="field">
+      <%= q_value %>
+      <div><br></div>
+      <% @answers_101_140.each do |a_key, a_value| %>
+        <%= form.radio_button q_key, a_key, required: true %><%= a_value %>
+      <% end %>
+    </div>
+    <h6><br></h6>
+  <% end %><br/>
+
+
+
+  <h3>
+    以下の10項目について働く上での優先順位を教えてください。
+  </h3>
+
+  <% @questions_141_150.each do |q_key, q_value| %>
+
+    <div class="field">
+      <%= q_value %><br/>
+      <% @answers_141_150.each do |a_key, a_value| %>
+        <%= form.radio_button q_key, a_key, required: true %> <%= a_value %>
+      <% end %>
+    </div>
+    <h6><br></h6>
+  <% end %>
+
+  <%= form.hidden_field :fin_flag, :value => true %><br/>
+
+  <%= form.hidden_field :user_id, value: current_user.id %><br/>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+</center>
