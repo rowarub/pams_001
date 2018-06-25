@@ -6,7 +6,7 @@ ruby '2.3.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
 # Use mysql as the database for Active Record
-gem 'mysql2', '0.3.18'
+# gem 'mysql2', '0.3.18'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
@@ -66,5 +66,10 @@ gem 'activeadmin'
 gem 'chart-js-rails', '~> 0.1.4'
 
 
-gem 'therubyracer', platforms: :ruby
-gem 'rails_12factor', group: :production
+# gem 'therubyracer', platforms: :ruby
+# gem 'rails_12factor', group: :production
+
+
+group :production do
+  gem 'pg'
+end
